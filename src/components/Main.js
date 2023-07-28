@@ -9,6 +9,7 @@ export default function Main() {
   function getDiceObjects() {
     let diceObjects = [];
     for (let i = 0; i < 10; i++) {
+      // let obj = { value: 6, isHeld: false, id: i };
       let obj = { value: Math.ceil(Math.random() * 6), isHeld: false, id: i };
       diceObjects.push(obj);
     }
@@ -46,11 +47,16 @@ export default function Main() {
   ));
 
   function rollDices() {
-    const newDiceObjects = diceObjects.map((obj) => {
-      obj.value = obj.isHeld ? obj.value : Math.ceil(Math.random() * 6);
-      return obj;
-    });
-    setDiceObjects(newDiceObjects);
+    if (gameOver) {
+      setGameOver(false);
+      setDiceObjects(getDiceObjects());
+    } else {
+      const newDiceObjects = diceObjects.map((obj) => {
+        obj.value = obj.isHeld ? obj.value : Math.ceil(Math.random() * 6);
+        return obj;
+      });
+      setDiceObjects(newDiceObjects);
+    }
   }
 
   function changeIsHeld(_id) {
