@@ -24,11 +24,11 @@ export default function Main() {
     while (
       diceObjects[i] &&
       diceObjects[i].isHeld &&
-      diceObjects[i].value == value
+      diceObjects[i].value === value
     ) {
       i++;
     }
-    if (i == 10) {
+    if (i === 10) {
       setGameOver(true);
       console.log("Game won");
     }
@@ -55,7 +55,7 @@ export default function Main() {
 
   function changeIsHeld(_id) {
     const newDiceObjects = diceObjects.map((obj) => {
-      obj.isHeld = obj.id == _id ? !obj.isHeld : obj.isHeld;
+      obj.isHeld = obj.id === _id ? !obj.isHeld : obj.isHeld;
       return obj;
     });
     setDiceObjects(newDiceObjects);
